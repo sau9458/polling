@@ -25,6 +25,7 @@
     "compression": "^1.6.2",
     "dependencies": "0.0.1",
     "express": "^4.14.0",
+    "jwt-simple": "^0.5.1",
     "object-assign": "^4.1.1",
     "project": "^0.1.6",
     "promise": "^7.1.1",
