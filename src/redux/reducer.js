@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux'
 import signUp from './signUp/reducer'
-// import locationReducer from './location'
+import login from './login/reducer'
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
     signUp: signUp,
+    login:login,
     ...asyncReducers,
   
   })

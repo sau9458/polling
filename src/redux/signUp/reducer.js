@@ -1,5 +1,5 @@
-import browserHistory from 'react-router/lib/browserHistory';
 import * as constants from '../constants'
+import browserHistory from 'react-router/lib/browserHistory';
 
 const initialState = browserHistory.getCurrentLocation()
 
