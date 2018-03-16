@@ -18,31 +18,29 @@ class Signup extends React.Component{
   };
   onFormSubmit(e){
     e.preventDefault();
-let password=this.state.password;
-let username=this.state.username;
-let option=this.state.option;
-// console.log(username);
-// console.log(password);
-var data1={
-  'username':this.state.username,
-  'password':this.state.password,
-  'option':this.state.option
-}
-    this.props.onSignUp(data1);
-  }
+    var data1={
+      'username':this.state.username,
+      'password':this.state.password,
+      'option':this.state.option
+        }
+     this.props.onSignUp(data1);
+    }
 
   handleUsernameChange = (e) => {
     this.setState({username: e.target.value});
   }
+
   handlePasswordChange = (e) => {
     this.setState({password: e.target.value});
   }
-handleOptionChange=(e)=>{
-  this.setState({option:e.target.value})
-}
+
+  handleOptionChange=(e)=>{
+   this.setState({option:e.target.value})
+ }
+
   componentWillReceiveProps(props){
     if(props.signUp.error === 1){
-      alert('Account already exist')
+       alert('Account already exist')
     }
     else if(props.signUp.error===0){
       this.props.router.push('/login');
@@ -52,7 +50,6 @@ handleOptionChange=(e)=>{
     console.log(props,this.props,'componentwillreceieveprops');
       }
   render(){
-    // console.log(this.props, '==============');
     return(
         <div>
           <Header heading='SignUp'/>
