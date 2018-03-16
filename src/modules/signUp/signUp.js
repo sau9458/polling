@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import {  Form,FormGroup,Button,Col,ControlLabel,FormControl,Row,Alert} from 'react-bootstrap';
 import './signUp.scss';
 import Header from '../header/header';
-import AlertMsg from '../alert/alert';
 import * as action from '../../redux/signUp/action';
-
+import AlertExample from '../alert/alert'
 
 class Signup extends React.Component{
   constructor(props){
@@ -18,7 +17,7 @@ class Signup extends React.Component{
   };
   onFormSubmit(e){
     e.preventDefault();
-    var data1={
+    let data1={
       'username':this.state.username,
       'password':this.state.password,
       'option':this.state.option
@@ -40,20 +39,30 @@ class Signup extends React.Component{
 
   componentWillReceiveProps(props){
     if(props.signUp.error === 1){
-       alert('Account already exist')
+      this.setState({
+        alert:true
+      })
     }
-    else if(props.signUp.error===0){
-      this.props.router.push('/login');
-      alert("you are sucessfull sign up");   
+    
+    else if(props.signUp.error===0){ 
+      this.setState({
+        alerts:true
+      },setTimeout(()=>{
+        this.props.router.push('/login');
+      },2000))
+      
     }
-  
+    
     console.log(props,this.props,'componentwillreceieveprops');
-      }
+  }
+
   render(){
     return(
         <div>
           <Header heading='SignUp'/>
-          
+         {this.state.alert? <AlertExample alertmsg="Account already exist"/>:''}
+         {this.state.alerts? <AlertExample alertmsg="Success Signup"/>:''}
+
             <Row className="show-grid">
               <Col xs={6} md={4} className="signupCol">
                  <Form onSubmit={(e)=> this.onFormSubmit(e)} horizontal>
@@ -62,7 +71,7 @@ class Signup extends React.Component{
                          Email
                          </Col>
                          <Col sm={10}>
-                            <FormControl type="email" placeholder="Email" name="email" required value={this.state.username} onChange={this.handleUsernameChange}/>
+                            <FormControl type="text" placeholder="Email" name="email" required value={this.state.username} onChange={this.handleUsernameChange}/>
                          </Col>
                     </FormGroup>
 

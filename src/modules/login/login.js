@@ -7,7 +7,7 @@ import * as action from '/home/etech/Desktop/polling/src/services/LoginServices'
 class Login extends React.Component{
 constructor(props){
   super(props)
-  this.setState={
+  this.state={
     email:'',
     password:''
    }

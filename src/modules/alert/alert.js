@@ -1,17 +1,31 @@
 import React from 'react';
-import { Alert} from 'react-bootstrap';
+import { Alert } from 'reactstrap';
 import './alert.scss'
-class AlertMsg extends  React.Component{
+// import { TIMEOUT } from 'dns';
 
-    render(){
-        return(
-            <div>
-            <Alert bsStyle="warning" id="alert">
-               {this.props.alert}
-            </Alert>;
-            </div>
-        );
-    }
-} 
+class AlertExample extends React.Component {
+  constructor(props) {
+    super(props);
 
-export default AlertMsg;
+    this.state = {
+      visible: true,
+        TIMEOUT:1000
+    };
+
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  onDismiss() {
+    this.setState({ visible: false });
+  }
+
+  render() {
+    return (
+      <Alert  isOpen={this.state.visible} toggle={this.onDismiss} id="alert">
+        {this.props.alertmsg}
+      </Alert>
+    );
+  }
+}
+
+export default AlertExample;

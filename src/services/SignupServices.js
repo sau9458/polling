@@ -1,17 +1,8 @@
 import 'whatwg-fetch';
-
-export const signupapi=()=>{
-    axios.get('https://secure-refuge-14993.herokuapp.com/add_user?username=admin&password=admin&role=admin')
-  .then( (response)=> {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
+import BASE_URL from '../config/config'
 
 export const signUpApi = (data1) => {
-  return fetch(`https://secure-refuge-14993.herokuapp.com/add_user?username=${data1.username}&password=${data1.password}&role=${data1.option}`).then((response) => {
+  return fetch(`${BASE_URL.URL}add_user?username=${data1.username}&password=${data1.password}&role=${data1.option}`).then((response) => {
     if (response.status === 500) {
       return new Promise((resolve, reject) => {
         response.json().then((data) => {
