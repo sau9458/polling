@@ -1,38 +1,35 @@
-// We only need to import the modules necessary for initial render
-import CoreLayout from '../layouts/PageLayout/PageLayout'
-import Home from './Home'
-import CounterRoute from './Counter'
-// import HomeView from './Home/HomeView';
-
-/*  Note: Instead of using JSX, we recommend using react-router
-    PlainRoute objects to build route definitions.   */
-
-export const createRoutes = (store) => ({
-  path        : '/',
-  component   : CoreLayout,
-  indexRoute  : Home,
-  childRoutes : [
-    CounterRoute(store)
-  ]
-})
+import React from 'react'
+import { browserHistory, Router, Route,history ,Link} from 'react-router'
+import { Provider } from 'react-redux'
+import PropTypes from 'prop-types'
+import Signup from '../modules/signUp/signUp';
+import { HomeView } from '../modules/homeView/homeView';
+import Login from '../modules/login/login';
 
 
-/*  Note: childRoutes can be chunked or otherwise loaded programmatically
-    using getChildRoutes with the following signature:
+class App extends React.Component {
+  // static propTypes = {
+  //   store: PropTypes.object.isRequired,
+  //   routes: PropTypes.object.isRequired,
+  // }
 
-    getChildRoutes (location, cb) {
-      require.ensure([], (require) => {
-        cb(null, [
-          // Remove imports!
-          require('./Counter').default(store)
-        ])
-      })
-    }
+  shouldComponentUpdate () {
+    return false
+  }
 
-    However, this is not necessary for code-splitting! It simply provides
-    an API for async route definitions. Your code splitting should occur
-    inside the route `getComponent` function, since it is only invoked
-    when the route exists and matches.
-*/
+  render () {
+    return (
+      <Provider store={this.props.store}>
+        <div style={{ height: '100%' }}>
+          <Router history={browserHistory} children={this.props.routes} >
+            <Route path="/" component={HomeView} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/login" component={Login} />
+          </Router>
+        </div>
+      </Provider>
+    )
+  }
+}
 
-export default createRoutes
+export default App
