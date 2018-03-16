@@ -15,6 +15,7 @@ export function locationChange (location = '/') {
   }
 }
 
+
 // ------------------------------------
 // Specialized Action Creator
 // ------------------------------------
@@ -31,3 +32,6 @@ export default function locationReducer (state = initialState, action) {
     ? action.payload
     : state
 }
+
+
+
