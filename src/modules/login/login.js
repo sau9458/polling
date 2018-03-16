@@ -5,6 +5,9 @@ import './login.scss';
 import Header from '../header/header';
 import * as action from '../../redux/login/action';
 import AlertExample from '../alert/alert'
+import  * as jwt from 'jwt-simple';
+
+
 
 class Login extends React.Component{
 constructor(props){
@@ -23,6 +26,8 @@ constructor(props){
    this.props.onLogin(dataLogin);
  }
 
+
+ 
  handleUsernameChange = (e) => {
   this.setState({username: e.target.value});
 }
@@ -42,7 +47,7 @@ componentWillReceiveProps(props){
     this.setState({
       loginAlerts:true
     },setTimeout(()=>{
-      this.props.router.push('/signup');
+      this.props.router.push('/userlist');
     },2000))
   }
   

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import Signup from '../modules/signUp/signUp';
 import { HomeView } from '../modules/homeView/homeView';
 import Login from '../modules/login/login';
+import UserList from '../modules/userList/userList';
 
 
 class App extends React.Component {
@@ -25,6 +26,8 @@ class App extends React.Component {
             <Route path="/" component={HomeView} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
+            <Route path="/userlist" component={UserList} />
+
           </Router>
         </div>
       </Provider>
